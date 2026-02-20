@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koleksi Template</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --blue: #2563eb;
+      --blue-light: #eff6ff;
+      --blue-mid: #93c5fd;
+      --blue-dark: #1d4ed8;
+      --gray: #64748b;
+      --gray-light: #f1f5f9;
+      --text: #0f172a;
+      --border: #e2e8f0;
+      --shadow: 0 4px 24px rgba(37,99,235,0.10);
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #f8faff;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Section ── */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .section-title span {
+      color: var(--blue);
+    }
+
+    .total-badge {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      padding: 6px 14px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    /* ── Filter Tabs ── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 44px;
+    }
+
+    .filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      border-radius: 99px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--gray);
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--blue-mid);
+      color: var(--blue);
+      background: var(--blue-light);
+      transform: translateY(-1px);
+    }
+
+    .filter-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+    }
+
+    .filter-btn .count {
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 99px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.25);
+      color: inherit;
+    }
+
+    .filter-btn:not(.active) .count {
+      background: var(--gray-light);
+      color: var(--gray);
+    }
+
+    /* ── Grid ── */
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: var(--blue-mid);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* stagger */
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.10s; }
+    .card:nth-child(3) { animation-delay: 0.15s; }
+    .card:nth-child(4) { animation-delay: 0.20s; }
+    .card:nth-child(5) { animation-delay: 0.25s; }
+    .card:nth-child(6) { animation-delay: 0.30s; }
+
+    .card-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-thumb-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover .card-thumb-inner {
+      transform: scale(1.08);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 99px;
+      padding: 4px 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .card-popular {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--blue);
+      border-radius: 99px;
+      padding: 4px 10px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-body {
+      padding: 20px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .btn-preview {
+      flex: 1;
+      padding: 9px 0;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-preview:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .btn-use {
+      flex: 1;
+      padding: 9px 0;
+      border-radius: 8px;
+      border: 1.5px solid var(--blue);
+      background: var(--blue);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-use:hover {
+      background: var(--blue-dark);
+      border-color: var(--blue-dark);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+
+    /* ── Empty State ── */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 20px;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .empty-state .icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .empty-state h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .empty-state p { font-size: 0.875rem; color: var(--gray); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .template-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Jelajahi Koleksi <span>Template</span></h2>
+    <span class="total-badge" id="totalBadge">12 Template Tersedia</span>
+  </div>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-category="semua">Semua <span class="count">12</span></button>
+    <button class="filter-btn" data-category="umkm">Khusus UMKM <span class="count">4</span></button>
+    <button class="filter-btn" data-category="undangan">Undangan Digital <span class="count">3</span></button>
+    <button class="filter-btn" data-category="landing">Landing Page Jasa <span class="count">3</span></button>
+    <button class="filter-btn" data-category="portofolio">Portofolio IT <span class="count">2</span></button>
+  </div>
+
+  <div class="template-grid" id="templateGrid"></div>
+</section>
+
+<script>
+const templates = [
+  { id:1, category:"umkm",      title:"Toko Kue Modern",         desc:"Tampilan bersih dan elegan untuk usaha bakeri & kue homemade.",  emoji:"🎂", color:"#fef9f0", popular:true  },
+  { id:2, category:"umkm",      title:"Warung Makan Nusantara",  desc:"Template hangat dengan sentuhan lokal untuk restoran & catering.", emoji:"🍜", color:"#fff7f0", popular:false },
+  { id:3, category:"umkm",      title:"Butik Fashion Lokal",     desc:"Minimalis & stylish untuk toko pakaian, hijab, dan aksesori.",    emoji:"👗", color:"#fff0f6", popular:false },
+  { id:4, category:"umkm",      title:"Kedai Kopi Artisan",      desc:"Aura cozy yang sempurna untuk coffee shop dan cafe kekinian.",    emoji:"☕", color:"#fdf5ee", popular:true  },
+  { id:5, category:"undangan",  title:"Undangan Pernikahan",     desc:"Elegan dan romantis, cocok untuk hari istimewa yang tak terlupakan.", emoji:"💍", color:"#fdf0f8", popular:true  },
+  { id:6, category:"undangan",  title:"Ulang Tahun Anak",        desc:"Ceria dan penuh warna untuk merayakan momen spesial si kecil.",   emoji:"🎉", color:"#f0f8ff", popular:false },
+  { id:7, category:"undangan",  title:"Acara Wisuda",            desc:"Formal & berkesan untuk merayakan pencapaian akademis.",         emoji:"🎓", color:"#f0fff4", popular:false },
+  { id:8, category:"landing",   title:"Jasa Fotografer",         desc:"Visual-first template untuk fotografer profesional & studio.",   emoji:"📸", color:"#f0f4ff", popular:false },
+  { id:9, category:"landing",   title:"Jasa Desain Interior",    desc:"Portofolio yang mewah untuk desainer interior dan arsitek.",     emoji:"🏠", color:"#f5f0ff", popular:true  },
+  { id:10,category:"landing",   title:"Laundry Kiloan",          desc:"Simpel dan to-the-point untuk usaha laundry harian.",           emoji:"👕", color:"#f0fbff", popular:false },
+  { id:11,category:"portofolio",title:"Full Stack Developer",    desc:"Dark mode premium untuk developer yang ingin stand out.",        emoji:"💻", color:"#f0f4ff", popular:true  },
+  { id:12,category:"portofolio",title:"UI/UX Designer",          desc:"Portofolio kreatif untuk menampilkan karya desain yang memukau.", emoji:"🎨", color:"#fff0ff", popular:false },
+];
+
+const grid = document.getElementById('templateGrid');
+const filterBar = document.getElementById('filterBar');
+const totalBadge = document.getElementById('totalBadge');
+
+function renderCards(filtered) {
+  grid.innerHTML = '';
+  if (!filtered.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">🔍</div>
+        <h3>Tidak ada template ditemukan</h3>
+        <p>Coba pilih kategori lain untuk melihat koleksi template kami.</p>
+      </div>`;
+    return;
+  }
+  filtered.forEach((t, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = `${i * 0.06}s`;
+    card.innerHTML = `
+      <div class="card-thumb">
+        <div class="card-thumb-inner" style="background:${t.color}">${t.emoji}</div>
+        <span class="card-badge">${categoryLabel(t.category)}</span>
+        ${t.popular ? '<span class="card-popular">🔥 Populer</span>' : ''}
+      </div>
+      <div class="card-body">
+        <div class="card-title">${t.title}</div>
+        <div class="card-desc">${t.desc}</div>
+
+        <div class="card-actions">
+          <button class="btn-preview">Preview</button>
+          <button class="btn-use">Gunakan</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function categoryLabel(c) {
+  return {semua:'Semua',umkm:'UMKM',undangan:'Undangan',landing:'Landing Page',portofolio:'Portofolio'}[c] || c;
+}
+
+filterBar.addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+
+  filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const cat = btn.dataset.category;
+  const filtered = cat === 'semua' ? templates : templates.filter(t => t.category === cat);
+  totalBadge.textContent = `${filtered.length} Template Tersedia`;
+  renderCards(filtered);
+});
+
+// Init
+renderCards(templates);
+</script>
+</body>
+</html>

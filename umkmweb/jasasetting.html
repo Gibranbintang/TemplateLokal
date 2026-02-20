@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jasa Setting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --blue: #2563eb;
+      --blue-light: #eff6ff;
+      --blue-mid: #93c5fd;
+      --blue-dark: #1d4ed8;
+      --gray: #64748b;
+      --gray-light: #f1f5f9;
+      --text: #0f172a;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #f8faff;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 64px 24px;
+    }
+
+    .section { max-width: 1080px; margin: 0 auto; }
+
+    /* ── Header ── */
+    .section-header { text-align: center; margin-bottom: 56px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .section-title span { color: var(--blue); }
+
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--gray);
+      max-width: 440px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Grid ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .card-featured { transform: none !important; }
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      animation: fadeUp 0.5s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      border-color: var(--blue-mid);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.10);
+      transform: translateY(-4px);
+    }
+
+    .card-featured {
+      background: var(--blue);
+      border-color: var(--blue);
+      transform: translateY(-12px);
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.35);
+    }
+
+    .card-featured:hover {
+      border-color: var(--blue-dark);
+      transform: translateY(-18px);
+      box-shadow: 0 28px 70px rgba(37, 99, 235, 0.4);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.15s; }
+    .card:nth-child(3) { animation-delay: 0.25s; }
+
+    /* ── Ribbon ── */
+    .ribbon {
+      position: absolute;
+      top: 18px;
+      right: -30px;
+      background: #facc15;
+      color: #713f12;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 40px;
+      transform: rotate(45deg);
+    }
+
+    /* ── Tier ── */
+    .tier-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .card-featured .tier-label { color: var(--blue-mid); }
+
+    /* ── Price ── */
+    .price-block { margin-bottom: 24px; }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .card-featured .price { color: var(--white); }
+
+    .price-period {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray);
+      margin-left: 4px;
+    }
+
+    .card-featured .price-period { color: var(--blue-mid); }
+
+    .price-note {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .card-featured .price-note { color: rgba(255,255,255,0.55); }
+
+    /* ── Divider ── */
+    .card-divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .card-featured .card-divider { background: rgba(255,255,255,0.15); }
+
+    /* ── Features ── */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex: 1;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.845rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .card-featured .feature-item { color: rgba(255,255,255,0.85); }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      border: 1.5px solid var(--blue-mid);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .card-featured .check-icon {
+      background: rgba(255,255,255,0.2);
+      border-color: rgba(255,255,255,0.35);
+      color: #facc15;
+    }
+
+    /* ── CTA ── */
+    .btn-cta {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-outline {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    .btn-solid {
+      background: var(--white);
+      border: 1.5px solid var(--white);
+      color: var(--blue);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .btn-solid:hover {
+      background: var(--blue-light);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+      transform: translateY(-1px);
+    }
+
+    /* ── Footnote ── */
+    .section-footnote {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<section class="section">
+
+  <div class="section-header">
+    <div class="eyebrow">🛠️ Jasa Setting</div>
+    <h2 class="section-title">Gak Sempat <span>Pasang Sendiri?</span></h2>
+    <p class="section-desc">Tim kami siap bantu online-kan bisnis kamu dalam hitungan jam — dari setting hosting sampai domain aktif.</p>
+  </div>
+
+  <div class="pricing-grid">
+
+    <!-- Basic -->
+    <div class="card">
+      <div class="tier-label">Basic</div>
+      <div class="price-block">
+        <div class="price">Rp50k <span class="price-period">/sekali</span></div>
+        <div class="price-note">Buat yang baru mau coba online pertama kali</div>
+      </div>
+      <div class="card-divider"></div>
+      <ul class="feature-list">
+        <li class="feature-item"><span class="check-icon">✓</span> Ganti teks & gambar sesuai bisnis</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Setting tombol WhatsApp aktif</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Upload ke hosting gratis (GitHub Pages / Netlify)</li>
+      </ul>
+      <button class="btn-cta btn-outline">Pilih Paket</button>
+    </div>
+
+    <!-- Profesional (Featured) -->
+    <div class="card card-featured">
+      <div class="ribbon">Laris</div>
+      <div class="tier-label">Profesional</div>
+      <div class="price-block">
+        <div class="price">Rp150k <span class="price-period">/sekali</span></div>
+        <div class="price-note">Paling banyak dipilih pelaku UMKM aktif</div>
+      </div>
+      <div class="card-divider"></div>
+      <ul class="feature-list">
+        <li class="feature-item"><span class="check-icon">✓</span> Semua fitur Paket Basic</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Free domain .my.id atau .biz.id</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Setting hosting di server customer</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Panduan edit mandiri (video)</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Revisi konten 1x gratis</li>
+      </ul>
+      <button class="btn-cta btn-solid">Ambil Sekarang 🚀</button>
+    </div>
+
+    <!-- Bisnis -->
+    <div class="card">
+      <div class="tier-label">Bisnis</div>
+      <div class="price-block">
+        <div class="price">Rp300k <span class="price-period">/sekali</span></div>
+        <div class="price-note">Untuk bisnis yang butuh tampilan lebih serius</div>
+      </div>
+      <div class="card-divider"></div>
+      <ul class="feature-list">
+        <li class="feature-item"><span class="check-icon">✓</span> Semua fitur Paket Profesional</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Domain .com atau .id (1 tahun)</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Bantu migrasi hosting lama ke baru</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Revisi konten tak terbatas (7 hari)</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Konsultasi via WhatsApp prioritas</li>
+      </ul>
+      <button class="btn-cta btn-outline">Pilih Paket</button>
+    </div>
+
+  </div>
+
+  <p class="section-footnote">
+    🔒 Pembayaran aman · Proses 1–6 jam · Ada pertanyaan?
+    <a href="#" style="color:var(--blue);font-weight:600;text-decoration:none;margin-left:3px;">Chat kami</a>
+  </p>
+
+</section>
+
+</body>
+</html>

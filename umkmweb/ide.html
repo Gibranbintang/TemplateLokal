@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kirim Ide Template</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --blue: #2563eb;
+      --blue-light: #eff6ff;
+      --blue-mid: #93c5fd;
+      --blue-dark: #1d4ed8;
+      --gray: #64748b;
+      --gray-light: #f1f5f9;
+      --text: #0f172a;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #f8faff;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+    }
+
+    /* ── Card ── */
+    .form-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 560px;
+      box-shadow: 0 8px 32px rgba(37, 99, 235, 0.07);
+      animation: fadeUp 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Header ── */
+    .form-header {
+      margin-bottom: 28px;
+    }
+
+    .form-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      color: var(--blue);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+    }
+
+    .form-title {
+      font-family: 'Lora', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .form-title span { color: var(--blue); }
+
+    .form-desc {
+      font-size: 0.875rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    /* ── Fields ── */
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+
+    label .optional {
+      font-weight: 500;
+      color: var(--gray);
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--white);
+      font-family: inherit;
+      font-size: 0.875rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+
+    input[type="text"]::placeholder,
+    textarea::placeholder {
+      color: #b0bec5;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    /* Custom select arrow */
+    .select-wrap {
+      position: relative;
+    }
+
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+      pointer-events: none;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      height: 120px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    /* ── Character counter ── */
+    .field-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 5px;
+    }
+
+    .char-count {
+      font-size: 0.72rem;
+      color: var(--gray);
+    }
+
+    .char-count.warn { color: #f59e0b; }
+    .char-count.over { color: #ef4444; }
+
+    /* ── Submit ── */
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: none;
+      background: var(--blue);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover {
+      background: var(--blue-dark);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .btn-submit:disabled {
+      background: var(--blue-mid);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* ── Success state ── */
+    .success-state {
+      display: none;
+      text-align: center;
+      padding: 32px 0 16px;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--blue-light);
+      border: 2px solid var(--blue-mid);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 16px;
+    }
+
+    .success-title {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .success-desc {
+      font-size: 0.875rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .btn-reset {
+      padding: 9px 22px;
+      border-radius: 99px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-reset:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    /* ── Note ── */
+    .form-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.78rem;
+      color: var(--blue-dark);
+      line-height: 1.5;
+      margin-top: 14px;
+    }
+
+    .form-note .note-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+    @media (max-width: 480px) {
+      .form-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-card">
+
+  <!-- Default form view -->
+  <div id="formView">
+    <div class="form-header">
+      <div class="form-eyebrow">💡 Ide Kamu</div>
+      <h2 class="form-title">Punya Ide Template <span>Keren?</span></h2>
+      <p class="form-desc">Kasih tau kami template apa yang kamu butuhin buat jualan — nanti kami buatin versi <strong>GRATIS</strong>-nya!</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <form id="ideaForm" novalidate>
+
+      <div class="field">
+        <label for="judulIde">Nama Ide / Judul</label>
+        <input type="text" id="judulIde" placeholder="Contoh: Landing Page Jasa Cuci Sepatu" maxlength="80" required />
+        <div class="field-footer">
+          <span class="char-count" id="judulCount">0 / 80</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="kategori">Kategori</label>
+        <div class="select-wrap">
+          <select id="kategori" required>
+            <option value="" disabled selected>Pilih kategori...</option>
+            <option value="kuliner">🍜 Kuliner</option>
+            <option value="jasa">🛠️ Jasa Panggilan</option>
+            <option value="toko">🛒 Toko Online</option>
+            <option value="fashion">👗 Fashion & Aksesoris</option>
+            <option value="kecantikan">💅 Kecantikan & Perawatan</option>
+            <option value="lainnya">✨ Lainnya</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fitur">Fitur yang Wajib Ada</label>
+        <textarea id="fitur" placeholder="Contoh: Harus ada tombol WA, gallery foto hasil cuci, sama daftar harga..." maxlength="400" required></textarea>
+        <div class="field-footer">
+          <span class="char-count" id="fiturCount">0 / 400</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span>Kirim Ide Saya</span> <span>🚀</span>
+      </button>
+
+      <div class="form-note">
+        <span class="note-icon">ℹ️</span>
+        <span>Ide kamu akan kami review dalam <strong>1–3 hari kerja</strong>. Template yang terpilih akan kami umumkan di halaman utama!</span>
+      </div>
+    </form>
+  </div>
+
+  <!-- Success view -->
+  <div class="success-state" id="successView">
+    <div class="success-icon">✅</div>
+    <div class="success-title">Ide Kamu Sudah Terkirim!</div>
+    <p class="success-desc">Terima kasih sudah berbagi! Tim kami akan segera mereview ide template kamu dan menghubungi kamu jika terpilih.</p>
+    <button class="btn-reset" id="resetBtn">Kirim Ide Lain</button>
+  </div>
+
+</div>
+
+<script>
+  // Character counters
+  function setupCounter(inputId, countId, max) {
+    const input = document.getElementById(inputId);
+    const counter = document.getElementById(countId);
+    input.addEventListener('input', () => {
+      const len = input.value.length;
+      counter.textContent = `${len} / ${max}`;
+      counter.className = 'char-count' + (len > max * 0.9 ? (len >= max ? ' over' : ' warn') : '');
+    });
+  }
+
+  setupCounter('judulIde', 'judulCount', 80);
+  setupCounter('fitur', 'fiturCount', 400);
+
+  // Form submit
+  document.getElementById('ideaForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const judul = document.getElementById('judulIde').value.trim();
+    const kategori = document.getElementById('kategori').value;
+    const fitur = document.getElementById('fitur').value.trim();
+
+    if (!judul || !kategori || !fitur) {
+      // Highlight empty fields
+      [['judulIde', judul], ['kategori', kategori], ['fitur', fitur]].forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (!val) {
+          el.style.borderColor = '#ef4444';
+          el.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.12)';
+          el.addEventListener('input', () => {
+            el.style.borderColor = '';
+            el.style.boxShadow = '';
+          }, { once: true });
+        }
+      });
+      return;
+    }
+
+    // Simulate sending
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span>Mengirim...</span>';
+
+    setTimeout(() => {
+      document.getElementById('formView').style.display = 'none';
+      const success = document.getElementById('successView');
+      success.style.display = 'block';
+    }, 1200);
+  });
+
+  // Reset
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    document.getElementById('ideaForm').reset();
+    document.getElementById('judulCount').textContent = '0 / 80';
+    document.getElementById('fiturCount').textContent = '0 / 400';
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = false;
+    btn.innerHTML = '<span>Kirim Ide Saya</span> <span>🚀</span>';
+    document.getElementById('successView').style.display = 'none';
+    document.getElementById('formView').style.display = 'block';
+  });
+</script>
+</body>
+</html>
